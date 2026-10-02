@@ -179,6 +179,23 @@
 .studentRecapTable .muted{color:#9aa8ba}
 @media(max-width:1000px){.studentRecapStats{grid-template-columns:1fr 1fr}.studentTableWrap{max-height:430px}}
 /* STUDENT_AFFAIRS_PER_STUDENT_END */
+
+.ylptWrap{background:#fff;border:1px solid #dfe7f3;border-radius:24px;padding:22px;box-shadow:0 12px 30px rgba(16,48,90,.08)}
+.ylptSummary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}
+.ylptMetric{padding:16px 18px;border-radius:18px;background:#f8fafd;border:1px solid #e2eaf5}
+.ylptMetric b{display:block;font-size:30px;color:#0b2d5c}.ylptMetric span{font-size:13px;color:#6e819a}
+.ylptBars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:end;min-height:330px;padding:10px 34px 4px}
+.ylptItem{cursor:pointer;text-align:center;transition:.2s}.ylptItem:hover{transform:translateY(-3px)}
+.ylptCol{margin:0 auto 10px;width:min(160px,72%);border-radius:22px 22px 12px 12px;color:#fff;font-size:30px;font-weight:700;display:flex;align-items:flex-start;justify-content:center;padding-top:16px;animation:ylptRise .75s cubic-bezier(.2,.8,.2,1) both;transform-origin:center bottom}
+.ylptItem:nth-child(1) .ylptCol{height:265px;background:#e59a31}.ylptItem:nth-child(2) .ylptCol{height:90px;background:#2b9a68}.ylptItem:nth-child(3) .ylptCol{height:145px;background:#2268df}
+.ylptItem b{font-size:18px;color:#17345d}.ylptItem span{display:block;font-size:13px;color:#71839c;margin-top:4px}
+@keyframes ylptRise{from{transform:scaleY(.06);opacity:.2}to{transform:scaleY(1);opacity:1}}
+.ylptDetail{margin-top:18px;max-height:0;overflow:hidden;opacity:0;transition:.35s ease}
+.ylptDetail.on{max-height:600px;opacity:1;border-top:1px solid #e3ebf5;padding-top:18px;overflow:auto}
+.ylptPeople{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ylptPerson{padding:12px 14px;border-radius:15px;background:#f8fafd;border:1px solid #e3eaf4}
+.ylptPerson b{display:block;font-size:15px;color:#17345d}.ylptPerson span{font-size:12px;color:#71839c}
+@media(max-width:1000px){.ylptSummary{grid-template-columns:1fr 1fr}.ylptPeople{grid-template-columns:1fr 1fr}}
 </style></head><body>
 <section class="slide cover on" data-title="Cover">
   <div class="coverBody">
@@ -432,6 +449,27 @@
   </div>
   <div class="callout warn">Data ini terutama berasal dari asesmen tertulis dan hafalan; belum menggambarkan speaking dan listening.</div>
 </section>
+<section class="slide" data-title="Hasil YLPT">
+  <span class="tag">Akademik · Young Learners Placement Test</span>
+  <h1>Hasil YLPT: 52 peserta berada pada tiga level</h1>
+  <p class="sub">Klik grafik untuk melihat nama peserta pada masing-masing level.</p>
+  <div class="ylptWrap">
+    <div class="ylptSummary">
+      <div class="ylptMetric"><b>52</b><span>Total peserta</span></div>
+      <div class="ylptMetric"><b>61,5%</b><span>Starters · 32 peserta</span></div>
+      <div class="ylptMetric"><b>13,5%</b><span>Movers · 7 peserta</span></div>
+      <div class="ylptMetric"><b>25%</b><span>Flyers · 13 peserta</span></div>
+    </div>
+    <div class="ylptBars">
+      <div class="ylptItem" data-ylpt="Starters"><div class="ylptCol">32</div><b>Starters</b><span>19 L · 13 P</span></div>
+      <div class="ylptItem" data-ylpt="Movers"><div class="ylptCol">7</div><b>Movers</b><span>3 L · 4 P</span></div>
+      <div class="ylptItem" data-ylpt="Flyers"><div class="ylptCol">13</div><b>Flyers</b><span>8 L · 5 P</span></div>
+    </div>
+    <div id="ylptDetail" class="ylptDetail"></div>
+  </div>
+  <div class="callout warn"><b>Pembacaan utama:</b> Starters mendominasi, Movers menjadi kelompok paling kecil, sementara Flyers sudah mencapai seperempat peserta. Hasil ini dapat digunakan untuk pengelompokan pembelajaran berdasarkan level aktual.</div>
+</section>
+
 
 <section class="slide" data-title="Vocab">
   <span class="tag">Akademik · Vocab</span><h1>Hafalan vocab tinggi, tetapi belum membedakan kemampuan penggunaan bahasa</h1>
@@ -960,5 +998,19 @@ function initStudentRecap(){
   if(!search.dataset.bound){search.addEventListener('input',draw);cls.addEventListener('change',draw);sort.addEventListener('change',draw);search.dataset.bound='1'}draw();
 }
 /* STUDENT_AFFAIRS_PER_STUDENT_END */
+
+const YLPT_DATA={"Starters":[["Malikha Shanum","P"],["Zahira Afifa Irfansyah","P"],["Kayyisah Adzkia Sufi Rachman","P"],["Hanifah Nur Azzahra","P"],["Ainayya Katsumi Fathiyyaturrahma","P"],["Aisyah Aardana Zabila","P"],["Haura Nazhifa","P"],["Aura Ayu Pinasti","P"],["Siti Fakhira M","P"],["Haura Althafunnisa Irfandy","P"],["Najla Mihrimah Tanjung","P"],["Alya Savita Tribuana","P"],["Putri Nabawiyah","P"],["Hafizh Azizul H","L"],["Ahmad Verrel Azzavier","L"],["Alzam Muhammad Abiyyu Hafidz","L"],["Hadrian Hafidz Abdurrohman","L"],["Fauza Ardyan Firash","L"],["Ibrahim Abdul Aziz","L"],["Muhammad Abdullah Rasyid","L"],["Ahmad Thoriq Baharuddin","L"],["Abdullah","L"],["Abdul Aziz Ar Rantisi","L"],["Arkan Said Zafran R","L"],["Muhammad Syafiq Abdurrahman","L"],["Muhammad Wafiq Jabir","L"],["Muhammad Zhafran Syabil","L"],["Quwayyis Musa Alfaqih","L"],["Rafa Fauzan Kurdianto","L"],["Rasya Farzan Kurdianto","L"],["Syamil Bareeza Angkasa","L"],["Yaqdhan Muhammad Fahillah F","L"]],"Movers":[["Shofiyyah Al Faruq","P"],["Khadijah Ghaisani Rusli","P"],["Falisha Adiba Putri Rochhasi","P"],["Tasmira Faradisa","P"],["Muhammad Almairi Tsaqib","L"],["Zhafran Azzam Viandra","L"],["Ibharim Hafiz Nugroho","L"]],"Flyers":[["Nasywa Hasnawafiqa","P"],["Cardiffa Ruby Savannah","P"],["Aisyah Nur Fathiya","P"],["Shanaya Myeisha Kardiman","P"],["Shakeela Diar Zaakirah","P"],["Maulana Ibrahim Arsyad","L"],["Ibrahim Thaqif Syazani","L"],["Gaza Abdurrahman Al Hafidz","L"],["Salman Fayyadh Fudhail","L"],["Syafiq Khairi Az zaheer","L"],["Ramadhan Khairul Ghani","L"],["Muhammad Naomar Beda","L"],["Nur Athar Al Fatih","L"]]};
+function renderYLPTDetail(level){
+  const el=document.getElementById('ylptDetail');
+  if(!el) return;
+  const rows=YLPT_DATA[level]||[];
+  const label={Starters:'Level dasar',Movers:'Level menengah',Flyers:'Level lanjut'}[level];
+  el.innerHTML='<div class="ukjDetailHead"><div><h2>'+level+'</h2><span>'+label+'</span></div><span>'+rows.length+' peserta</span></div>'+
+    '<div class="ylptPeople">'+rows.map(r=>'<div class="ylptPerson"><b>'+esc(r[0])+'</b><span>'+(r[1]==='L'?'Laki-laki':'Perempuan')+'</span></div>').join('')+'</div>';
+  el.classList.add('on');
+  setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'nearest'}),60);
+}
+document.querySelectorAll('[data-ylpt]').forEach(el=>el.onclick=()=>renderYLPTDetail(el.dataset.ylpt));
+
 function render(t){if(t==='Rekap Per Siswa')initStudentRecap();if(t==='Ringkasan')renderOverview();else if(t==='Tahfizh Zona')renderZone();else if(t==='Tahfizh')renderTahfizh();else if(t==='Halaqah Kelas')renderHalaqah();else if(t==='Akademik Kelas')renderAcademicClass();else if(t==='Akademik Guru')renderAcademicTeacher();else if(t==='Kehadiran')renderAttendance();else if(t==='Kasus Siswa')renderCases();else if(t==='Kesiswaan Kelas')renderStudentAffairs();else if(t==='SPARQ')renderSPARQ();else if(t==='Market Day')renderMarket();else if(t==='Program')renderPrograms();else if(t==='Ekskul')renderEkskul();else if(t==='PjBL')renderPjbl();else if(t==='Prestasi')renderAchievements();else if(t==='Temuan')renderFindings();else if(t==='Tindak Lanjut')renderFollowup();}
 </script></body></html>
